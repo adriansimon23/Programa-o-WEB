@@ -22,3 +22,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Para altera o numero da porta padão do Vue CLI
+npm run serve -- --port 4000
+
