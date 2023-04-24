@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Bem vindo ao meu site</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<title>Jogo da Forca</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div id="app">
+		<h1>Jogo da Forca</h1>
+		<div id="word">
+			<span v-for="(letter, index) in letters" :key="index">
+				{{ letter }}
+			</span>
+		</div>
+		<div id="guess">
+			<label for="guess-input">Digite uma letra:</label>
+			<input type="text" id="guess-input" v-model="guess" maxlength="1">
+			<button @click="submitGuess">OK</button>
+		</div>
+		<div id="misses">
+			<p>Letras erradas:</p>
+			<ul>
+				<li v-for="(miss, index) in misses" :key="index">{{ miss }}</li>
+			</ul>
+		</div>
+	</div>
 
-    <button type="button" id="add">Clique aqui</button>
-
-
-
-
-    <script src="add.js">
-        
+	<script src="https://unpkg.com/vue"></script>
+	<script src="app.js"></script>
 </body>
 </html>
