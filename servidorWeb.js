@@ -1,15 +1,57 @@
 // rodando Node Js no LocalHost
-var MongoClient = require('mongodb').MongoClient
-var express = require("express");
-var http = require('http');
 
-const server = http.createServer((req, res)=>{
+const http = require('http');
+const express = require('express');
+// const WebSocket = require('ws');
 
-    res.end('Hello Node Js')
+const app = express();
+const server = http.createServer(app);
+// const ws = new WebSocket.Server({ server });
 
-});
+const {
+    MongoClient
+} = require('mongodb');
 
-const PORT = 4000;
-server.listen(4000);
+var db;
+var locais;
+var names;
+async function conecta()
+{
+    var client = new MongoClient('mongodb://localhost:27017');
+    await client.connect();
+    db = await client.db("NOVO_DB");
+    locais = await db.collection("places");
+    // Inicia o servidor
+    server.listen(4000, () => {
+    console.log('Servidor iniciado na porta 27');
+  });
+}
 
-console.log(`Node Js rodando na porta ${PORT}`);
+async function inserte()
+{
+    try {
+        await locais.insertOne(JSON.stringify(msg));
+        
+    } catch (e) {
+        print (e);
+    }
+}
+
+async function lista()
+{
+    try {
+        const palavras = await locais.getCollectionInfos();
+        print(palavras)
+    } catch (error) {
+        print ("error");
+    }
+}
+
+
+async function init()
+{
+    await conecta();
+    await inserte();
+}
+
+init();
