@@ -6,6 +6,7 @@ const WebSocket = require('ws');
 var db;
 var locais;
 var wss;
+var listaLocais = [];
 
 async function conecta() {
   var client = new MongoClient('mongodb://127.0.0.1:27017');
