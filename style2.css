@@ -1,0 +1,60 @@
+body {
+  background-color: #230ab1;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #87ceeb;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 72px;
+  color: #000000;
+}
+
+p {
+  font-size: 36px;
+  color: #000000;
+}
+
+#palavra {
+  margin-top: 40px;
+  font-size: 72px;
+  letter-spacing: 30px;
+}
+
+label {
+  display: block;
+  font-size: 36px;
+  color: #000000;
+  margin-top: 40px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 36px;
+  background-color: #007bff;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #0062cc;
+}
