@@ -1,5 +1,5 @@
 // Definir a lista de locais
-const listaLocais = ['São Paulo', 'Rio de Janeiro', 'Salvador', 'Recife', 'Porto Alegre'];
+const listaLocais = ['São Paulo', 'Rio de Janeiro', 'Salvador', 'Recife', 'Porto Alegre', 'Florianopolis'];
 
 // Escolher uma palavra aleatória da lista
 const palavra = listaLocais[Math.floor(Math.random() * listaLocais.length)];
@@ -44,24 +44,46 @@ guessForm.addEventListener('submit', (event) => {
 
   // Atualizar os elementos HTML de acordo com a resposta
   if (acertou) {
-    palavraElement.textContent = `Acertou! A palavra é: ${palavraOculta}`;
+    if (palavraOculta === palavra) {
+      palavraElement.textContent = 'Parabéns, você acertou a palavra!';
+      letraInput.disabled = true;
+    } else {
+      palavraElement.textContent = 'Letra correta! ' + palavraOculta;
+    }
   } else {
     numTentativas++;
-    tentativasElement.textContent = `Tentativas restantes: ${numTentativasMax - numTentativas}`;
-  }
-
-  // Verificar se o jogador ganhou ou perdeu
-  if (palavraOculta === palavra) {
-    palavraElement.textContent = 'Parabéns, você ganhou!';
-    letraInput.disabled = true;
-  } else if (numTentativas === numTentativasMax) {
-    palavraElement.textContent = `Você perdeu! A palavra era: ${palavra}`;
-    letraInput.disabled = true;
+    if (numTentativas === numTentativasMax) {
+      palavraElement.textContent = `Você perdeu :( Tente novamente! A palavra era: ${palavra}`;
+      letraInput.disabled = true;
+    } else {
+      palavraElement.textContent = 'Letra errada, tente novamente! ' + palavraOculta;
+      tentativasElement.textContent = `Tentativas restantes: ${numTentativasMax - numTentativas}`;
+    }
   }
 
   // Limpar o input de letra
   letraInput.value = '';
 });
 
-// Exibir a dica (primeira letra da palavra)
-dicaElement.textContent = `Dica: Começa com a letra ${palavra[0].toUpperCase()}`;
+// Exibir as dicas
+let dicas = ['Começa com a letra ' + palavra[0].toUpperCase()];
+if (palavra.length > 8) {
+  dicas.push('Possui mais de 8 letras');
+}
+if (palavra.includes('São Paulo')) {
+  dicas.push('É uma cidade muito populosa');
+}
+if (palavra.includes('Salvador')) {
+	dicas.push('Seu clima é quente durante o ano');
+  }
+if (palavra.includes('Rio de janeiro')) {
+	dicas.push('Foi palco de final de Copa do Mundo');
+  }
+if (palavra.includes('Porto Alegre')) {
+	dicas.push('No futebol, uma rivalidade à flor da pele');
+  }
+if (palavra.includes('Florianópolis')) {
+    dicas.push('Ilha da magia');
+  }
+  
+dicaElement.textContent = `Dicas: ${dicas.join(', ')}`;
